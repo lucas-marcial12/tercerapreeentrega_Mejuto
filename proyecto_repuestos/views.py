@@ -67,4 +67,22 @@ def buscar_clientes(req):
     return render(req, "buscar_clientes.html", {})
 
 def busqueda_clientes(req ):
-    return HttpResponse(f'Estoy buscando clientes{req.GET['clientes']}' )
+
+   
+    mensaje = ''
+    cliente = None
+    
+    if req.method == "GET":
+        nombre_cliente = req.GET.get('cliente', None)
+        
+        if nombre_cliente:
+            try:
+                cliente = clientes.objects.get(nombre=nombre_cliente)
+            except clientes.DoesNotExist:
+                mensaje = f'No se encontró ningún cliente con el nombre "{nombre_cliente}".'
+        else:
+            mensaje = 'Por favor, introduce un nombre para buscar.'
+
+    return render(req, "busqueda_clientes.html", {
+        'cliente': cliente,
+        'mensaje': mensaje})

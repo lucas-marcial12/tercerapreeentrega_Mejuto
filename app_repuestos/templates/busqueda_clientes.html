@@ -1,0 +1,13 @@
+{% extends 'padre.html' %}
+
+
+{% block contenido_que_cambia %}
+    {% if cliente %}
+        <h3>Cliente encontrado:</h3>
+        <p>Nombre: {{ cliente.nombre }}</p>
+        <p>Apellido: {{ cliente.apellido }}</p>
+        <p>Email: {{ cliente.email }}</p>
+    {% else %}
+        <p>{{ mensaje }}</p>
+    {% endif %}
+{% endblock %}
