@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import clientes
+from .forms import cliente_formulario
 # Create your views here.
 
 # Create your views here.
@@ -39,4 +40,15 @@ def quienes_somos(req):
     return render(req, "quienes_somos.html", {})
 
 def clientes_formulario(req):
-    return render(req, "clientes_formulario", {})
+    
+    print('method', req.method)
+    print('data', req.POST)
+
+    if req.method == "POST":
+        nuevo_cliente = clientes(nombre = req.POST['nombre'], apellido = req.POST['apellido'], email = req.POST['email'])
+        nuevo_cliente.save()
+        return render(req, "inicio.html", {})
+
+    else:
+        mi_formulario = cliente_formulario()
+    return render(req, "clientes_formulario.html", {'mi_formulario': mi_formulario})

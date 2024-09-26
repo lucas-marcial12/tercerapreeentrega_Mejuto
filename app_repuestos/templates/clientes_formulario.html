@@ -1,11 +1,12 @@
 {% extends 'padre.html' %}
 
 {% block contenido_que_cambia %}
-<p>texto de prueba</p>
-<form action="{% url 'curso_formulario' %}" method="get">
+<form action="{% url 'clientes_formulario' %}" method="post">
+    {% csrf_token  %}
+    {{mi_formulario.as_p}}
 
-<p>Clientes: <input type="text" name="clientes"> </p>
-<button type="submit">Enviar</button>
+    <button type="submit">Enviar</button>
+
 </form>
 
 {% endblock contenido_que_cambia %}
