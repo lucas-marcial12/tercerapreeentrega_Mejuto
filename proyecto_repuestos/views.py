@@ -44,11 +44,27 @@ def clientes_formulario(req):
     print('method', req.method)
     print('data', req.POST)
 
-    if req.method == "POST":
-        nuevo_cliente = clientes(nombre = req.POST['nombre'], apellido = req.POST['apellido'], email = req.POST['email'])
-        nuevo_cliente.save()
-        return render(req, "inicio.html", {})
+    if req.method == "POST": 
+        mi_formulario = cliente_formulario(req.POST)
+
+        if mi_formulario.is_valid(): 
+            data = mi_formulario.cleaned_data
+
+            nuevo_cliente = clientes(nombre = data['nombre'], apellido = data['apellido'], email = data['email'])
+            nuevo_cliente.save()
+            return render(req, "inicio.html", {})
+        else:
+            return render(req, "clientes_formulario.html", {'mi_formulario': mi_formulario})
+
+        
+        
 
     else:
         mi_formulario = cliente_formulario()
-    return render(req, "clientes_formulario.html", {'mi_formulario': mi_formulario})
+        return render(req, "clientes_formulario.html", {'mi_formulario': mi_formulario})
+
+def buscar_clientes(req):
+    return render(req, "buscar_clientes.html", {})
+
+def busqueda_clientes(req ):
+    return HttpResponse(f'Estoy buscando clientes{req.GET['clientes']}' )
