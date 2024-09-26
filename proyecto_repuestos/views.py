@@ -37,3 +37,6 @@ def sucursales(req):
 def quienes_somos(req):
 
     return render(req, "quienes_somos.html", {})
+
+def clientes_formulario(req):
+    return render(req, "clientes_formulario", {})
