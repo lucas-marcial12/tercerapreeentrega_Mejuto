@@ -28,8 +28,12 @@ def inicio(req):
 
 def proveedores(req):
 
-    return render(req, "proovedores.html", {})
+    return render(req, "proveedores.html", {})
 
 def sucursales(req):
 
     return render(req, "sucursales.html", {})
+
+def quienes_somos(req):
+
+    return render(req, "quienes_somos.html", {})

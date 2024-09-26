@@ -55,7 +55,7 @@ ROOT_URLCONF = 'app_repuestos.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['app_repuestos/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
