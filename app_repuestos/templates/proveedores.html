@@ -1,18 +1,42 @@
-{% extends 'padre.html' %}
+{% extends 'navbar.html' %}
+
+{% load static %} 
+
 
 {% block contenido_que_cambia %}
 
- <h1> PROVEEDORES </h1>
+<div class="container my-5">
+    <h1 class="text-center">Nuestros Proveedores</h1>
+    <p class="text-center">Trabajamos con las mejores marcas del mercado:</p>
 
- <p> Nuestros proveedores son: </p>
- <ul>
-   <li>Peugeot </li>    
-   <li>Toyota </li>    
-   <li>Renault </li>    
-   <li>Fiat </li>    
-   <li>Honda </li>    
-
-
- </ul>
+    <!-- Lista de proveedores con logos -->
+    <ul class="list-group list-group-flush">
+        <!-- Peugeot -->
+        <li class="list-group-item d-flex align-items-center">
+            <img src="{% static 'imagenes/peugeot_logo.jpg' %}" alt="Peugeot" class="me-3" style="width: 50px; height: 50px;">
+            <span>Peugeot</span>
+        </li>
+        <!-- Toyota -->
+        <li class="list-group-item d-flex align-items-center">
+            <img src="{% static 'imagenes/toyota_logo.jpg' %}" alt="Toyota" class="me-3" style="width: 50px; height: 50px;">
+            <span>Toyota</span>
+        </li>
+        <!-- Renault -->
+        <li class="list-group-item d-flex align-items-center">
+            <img src="{% static 'imagenes/renault_logo.jpg' %}" alt="Renault" class="me-3" style="width: 50px; height: 50px;">
+            <span>Renault</span>
+        </li>
+        <!-- Fiat -->
+        <li class="list-group-item d-flex align-items-center">
+            <img src="{% static 'imagenes/fiat_logo.jpg' %}" alt="Fiat" class="me-3" style="width: 50px; height: 50px;">
+            <span>Fiat</span>
+        </li>
+        <!-- Honda -->
+        <li class="list-group-item d-flex align-items-center">
+            <img src="{% static 'imagenes/honda_logo.jpg' %}" alt="Honda" class="me-3" style="width: 50px; height: 50px;">
+            <span>Honda</span>
+        </li>
+    </ul>
+</div>
 
 {% endblock contenido_que_cambia %}

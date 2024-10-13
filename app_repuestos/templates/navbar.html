@@ -1,33 +1,81 @@
- <!-- Navigation-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static  %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Shop Homepage - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+         <!-- Navigation-->
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#!">Inicio</a>
+        <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'lista_curso'  %}">cursos</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'entregables'  %}">entregables</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'estudiantes'  %}">estudiantes</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'profesores'  %}">profesores</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'clientes_formulario'  %}">Registrarse</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'proveedores'  %}">Proveedores</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'sucursales'  %}">Sucursales</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'quienes_somos'  %}">Acerca de mi</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'buscar_clientes'  %}">Buscar clientes</a></li>
+                
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nuestros productos</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">All Products</a></li>
+                        <li><a class="dropdown-item" href="#!">Accesorios</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                        <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                        <li><a class="dropdown-item" href="#!">Tren delantero</a></li>
+                        <li><a class="dropdown-item" href="#!">Encendidos</a></li>
                     </ul>
                 </li>
             </ul>
             <form class="d-flex">
                 <button class="btn btn-outline-dark" type="submit">
                     <i class="bi-cart-fill me-1"></i>
-                    Cart
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    Contacto
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">1125455898</span>
                 </button>
             </form>
         </div>
     </div>
 </nav>
+        <!-- Header-->
+        <header class="bg-dark py-5" style="background-image: url('{% static "imagenes/amato_repuestos.jpg" %}'); background-size: contain; background-repeat: no-repeat; background-position: center; height: 400px;">
+            <div class="container px-4 px-lg-5 my-5 text-center text-white">
+                <!-- Contenido del encabezado (letras) ha sido eliminado -->
+            </div>
+        </header>
+        
+
+
+        {% block contenido_que_cambia %}
+            
+        {% endblock contenido_que_cambia %}
+            
+        
+
+
+
+       
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2024</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
