@@ -14,6 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+import os
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +27,10 @@ SECRET_KEY = 'django-insecure-7@+n_a!hj707)npoqj+m_0+3=vp^m-lnf&8kg8+*5icx3f5p7n
 DEBUG = True
 
 ALLOWED_HOSTS = []
+#para cargar imagenes
+STATIC_DIR = os.path.join(BASE_DIR, "static")
 
+print(STATIC_DIR) #para comprobar que esta en la carpeta correcta
 
 # Application definition
 
@@ -117,8 +121,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS = [STATIC_DIR,]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
