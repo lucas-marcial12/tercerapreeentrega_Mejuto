@@ -1,16 +1,24 @@
-{% extends 'padre.html' %}
+{% extends 'navbar.html' %}
 
 {% block contenido_que_cambia %}
 
- <h1> SUCURSALES </h1>
-
- <p> Nuestras sucursales son: </p>
-  <ul>
-    <li>Quilmes, avenida San Martin 1415 </li>    
-    <li>La plata, calle 101 </li>    
-    <li>Cruce Varela, Gamino General Belgrano 2022 </li>    
-
-
-  </ul>
+<div class="container mt-5 text-center">
+    <h1 class="mb-4">SUCURSALES</h1>
+    <p class="lead">Nuestras sucursales son:</p>
+    <ul class="list-unstyled">
+        <li class="mb-3">
+            <i class="bi bi-geo-alt-fill text-primary"></i> 
+            <strong>Quilmes:</strong> avenida San Martín 1415
+        </li>
+        <li class="mb-3">
+            <i class="bi bi-geo-alt-fill text-primary"></i> 
+            <strong>La Plata:</strong> calle 101
+        </li>
+        <li class="mb-3">
+            <i class="bi bi-geo-alt-fill text-primary"></i> 
+            <strong>Cruce Varela:</strong> Camino General Belgrano 2022
+        </li>
+    </ul>
+</div>
 
 {% endblock contenido_que_cambia %}
