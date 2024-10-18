@@ -30,6 +30,7 @@ urlpatterns = [
     path('clientes_formulario/', clientes_formulario, name= 'clientes_formulario'),
     path('buscar_clientes/', buscar_clientes, name= 'buscar_clientes'),
     path('busqueda_clientes/', busqueda_clientes, name= 'busqueda_clientes'),
+    path('login/', login_request, name= 'login'),
 
 
 ]

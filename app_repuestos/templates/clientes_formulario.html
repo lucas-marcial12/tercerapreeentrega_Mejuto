@@ -3,13 +3,12 @@
 {% block contenido_que_cambia %}
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
     <div class="card p-4 shadow-lg" style="width: 400px; border-radius: 10px;">
-        <h2 class="text-center mb-4">Registro de Clientes</h2>
-        <form action="{% url 'clientes_formulario' %}" method="post">
+        <h2 class="text-center mb-4">Iniciar Sesión</h2>
+        <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
-            {{ mi_formulario.as_p }}
-
+            {{ form.as_p }}
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
             </div>
         </form>
     </div>
