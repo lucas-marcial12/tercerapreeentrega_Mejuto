@@ -117,3 +117,20 @@ def login_request(request):
 
     return render(request, "login.html", {'form': form})
                 
+def registro(request):
+
+    if request.method == 'POST':
+
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+
+            username = form.cleaned_data['username']
+            form.save()
+            return render(request,"inicio.html", {"mensaje":" Usuario creado"})
+
+    else:
+
+        form = UserCreationForm()
+
+    return render(request, "registro.html", {"form": form})    

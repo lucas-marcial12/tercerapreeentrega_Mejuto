@@ -19,6 +19,7 @@ from django.urls import path
 from proyecto_repuestos.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,7 +32,8 @@ urlpatterns = [
     path('buscar_clientes/', buscar_clientes, name= 'buscar_clientes'),
     path('busqueda_clientes/', busqueda_clientes, name= 'busqueda_clientes'),
     path('login/', login_request, name= 'login'),
-
+    path('registro', registro, name='registro'),
+    path('logout', LogoutView.as_view(template_name='logout.html'), name='logout'),
 
 ]
 

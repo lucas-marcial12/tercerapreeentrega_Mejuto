@@ -1,0 +1,9 @@
+{% extends 'navbar.html' %}
+
+{% block contenido_que_cambia %}
+<div class="container text-center mt-5">
+    <h1>Has salido exitosamente</h1>
+    <p>Gracias por usar nuestra aplicación. ¡Te esperamos de vuelta pronto!</p>
+    <a href="{% url 'inicio' %}" class="btn btn-primary mt-3">Volver al inicio</a>
+</div>
+{% endblock contenido_que_cambia %}
