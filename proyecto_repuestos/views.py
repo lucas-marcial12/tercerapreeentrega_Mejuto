@@ -2,12 +2,13 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import clientes
 from .forms import cliente_formulario
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
-
+from django.contrib.auth.views import LogoutView
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 # Create your views here.
@@ -134,3 +135,39 @@ def registro(request):
         form = UserCreationForm()
 
     return render(request, "registro.html", {"form": form})    
+
+def leerclientes(request):
+
+      lista_clientes = clientes.objects.all() #trae todos los clientes
+
+      contexto= {"clientes": lista_clientes} 
+
+      return render(request, "leerclientes.html",contexto)
+
+def eliminar_clientes(request, cliente_nombre):
+ 
+    cliente = clientes.objects.get(nombre=cliente_nombre)
+    cliente.delete()
+ 
+    # vuelvo al menú
+    clientes_eliminar = clientes.objects.all()  # trae todos los clientes
+ 
+    contexto = {"clientes": clientes_eliminar}
+ 
+    return render(request, "leerclientes.html", contexto)
+
+def editar_clientes(request, cliente_id):
+    cliente = get_object_or_404(clientes, id=cliente_id)  # Obtener el cliente por ID
+
+    if request.method == "POST":
+        mi_formulario = cliente_formulario(request.POST, instance=cliente)  # Cargar el formulario con los datos existentes
+
+        if mi_formulario.is_valid():
+            mi_formulario.save()  # Guardar los cambios
+            return redirect('leerclientes')  # Redirigir a la lista de clientes después de editar
+    else:
+        mi_formulario = cliente_formulario(instance=cliente)  # Crear el formulario con los datos actuales
+
+    contexto = {'mi_formulario': mi_formulario, 'cliente': cliente}
+    return render(request, "editar_cliente.html", contexto)
+

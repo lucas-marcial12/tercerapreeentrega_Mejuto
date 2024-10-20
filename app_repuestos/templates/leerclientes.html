@@ -1,0 +1,47 @@
+{% extends 'navbar.html' %}
+
+{% load static %} 
+
+{% block contenido_que_cambia %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Lista de Clientes</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in clientes %}
+                    <tr>
+                        <td>{{ p.nombre }}</td>
+                        <td>{{ p.apellido }}</td>
+                        <td>{{ p.email }}</td>
+                        <td>
+                            <a href="{% url 'eliminar_clientes' p.id %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?');">Eliminar</a>
+                            <a href="{% url 'editar_clientes' p.id %}" class="btn btn-warning">Editar</a> 
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'clientes_formulario' %}" class="btn btn-primary">Agregar nuevo cliente</a>
+    </div>
+</body>
+</html>
+
+{% endblock contenido_que_cambia %}

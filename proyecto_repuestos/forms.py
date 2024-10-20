@@ -1,6 +1,7 @@
 from django import forms
+from .models import clientes  
 
-class cliente_formulario(forms.Form):
-    nombre = forms.CharField()
-    apellido = forms.CharField()
-    email = forms.EmailField()
+class cliente_formulario(forms.ModelForm):
+    class Meta:
+        model = clientes  
+        fields = ['nombre', 'apellido', 'email'] 

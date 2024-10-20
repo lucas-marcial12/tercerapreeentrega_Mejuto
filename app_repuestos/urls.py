@@ -32,8 +32,12 @@ urlpatterns = [
     path('buscar_clientes/', buscar_clientes, name= 'buscar_clientes'),
     path('busqueda_clientes/', busqueda_clientes, name= 'busqueda_clientes'),
     path('login/', login_request, name= 'login'),
-    path('registro', registro, name='registro'),
-    path('logout', LogoutView.as_view(template_name='logout.html'), name='logout'),
+    path('registro/', registro, name='registro'),
+    path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
+    path('leerclientes/', leerclientes, name='leerclientes'),
+    path('eliminar_clientes/<cliente_nombre>/', eliminar_clientes, name="eliminar_clientes"),
+    path('editar_clientes/<int:cliente_id>/', editar_clientes, name="editar_clientes"),
+
 
 ]
 
