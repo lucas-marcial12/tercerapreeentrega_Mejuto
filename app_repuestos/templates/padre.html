@@ -28,7 +28,12 @@
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'proveedores'  %}">Proveedores</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'sucursales'  %}">Sucursales</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'quienes_somos'  %}">Acerca de mi</a></li>
+            {% if user.is_authenticated %}
+                
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'buscar_clientes'  %}">Buscar clientes</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'leerclientes'  %}">Administrar</a></li>
+
+        {% endif %}
 
                 
                 <li class="d-flex ms-lg-4"> 
@@ -41,14 +46,21 @@
 
 
             </ul>
-            <a class="btn btn-dark" href="{% url 'logout' %}">Logout</a>
-
-
-            <div  class="nav-item">
+            {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-dark" style="font-weight: bold;">
+                    Cerrar sesión
+                </button>
+            </form>
+        {% else %}
+            <div class="nav-item">
                 <a class="btn btn-outline-dark" href="{% url 'login' %}" role="button" style="font-weight: bold;">
                     <i class="bi-person-circle"></i> Iniciar sesión
                 </a>
             </div>
+        {% endif %}
+        
            
         </div>
     </div>

@@ -1,10 +1,14 @@
-{% extends 'padre.html' %}
+{% extends 'navbar.html' %}
 
 {% block contenido_que_cambia %}
-<form action="{% url 'busqueda_clientes' %}" method="get">
-    <p>cliente: <input type="text" name="cliente" ></p>
-    <button type="submit">Buscar</button>
-
-</form>
-
+<div class="container mt-4">
+    <h2>Buscar Cliente</h2>
+    <form action="{% url 'busqueda_clientes' %}" method="get" class="form-inline">
+        <div class="form-group mb-2">
+            <label for="cliente" class="sr-only">Cliente:</label>
+            <input type="text" name="cliente" class="form-control" id="cliente" placeholder="Nombre del cliente" required>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+    </form>
+</div>
 {% endblock contenido_que_cambia %}

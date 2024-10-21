@@ -9,6 +9,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
 
 # Create your views here.
@@ -92,9 +93,8 @@ def busqueda_clientes(req):
         'mensaje': mensaje})
 
 def login_request(request):
-
     if request.method == "POST":
-        form = AuthenticationForm(request, data = request.POST)
+        form = AuthenticationForm(request, data=request.POST)
 
         if form.is_valid():
             usuario = form.cleaned_data.get('username')
@@ -104,18 +104,15 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-
-                return render(request, "inicio.html", {"mensaje": f"Bienvenido {usuario}"})
+                # Usar mensajes en lugar de pasar el mensaje directo al contexto
+                messages.success(request, f"Bienvenido {usuario}")
+                return redirect('inicio')  # Redireccionar en lugar de renderizar
             else:
-
-                return render(request, "inicio.html", {"mensaje": "Error, datos incorrectos"})
-            
+                messages.error(request, "Error, datos incorrectos")
         else:
+            messages.error(request, "Error, usuario invalido. Ingrese nuevamente su usuario y contraseña")
 
-                return render(request, "inicio.html", {"mensaje": "Error, formulario erroneo"})
-                
     form = AuthenticationForm()
-
     return render(request, "login.html", {'form': form})
                 
 def registro(request):
@@ -171,3 +168,9 @@ def editar_clientes(request, cliente_id):
     contexto = {'mi_formulario': mi_formulario, 'cliente': cliente}
     return render(request, "editar_cliente.html", contexto)
 
+
+
+def custom_logout(request):
+    logout(request)
+    messages.success(request, "Has cerrado sesión exitosamente.")
+    return redirect('inicio')

@@ -1,9 +1,6 @@
 {% extends 'navbar.html' %}
 
 {% block contenido_que_cambia %}
-<div class="container text-center mt-5">
-    <h1>Has salido exitosamente</h1>
-    <p>Gracias por usar nuestra aplicación. ¡Te esperamos de vuelta pronto!</p>
-    <a href="{% url 'inicio' %}" class="btn btn-primary mt-3">Volver al inicio</a>
-</div>
+    <h2>Has cerrado sesión exitosamente</h2>
+    <a href="{% url 'login' %}" class="btn btn-primary">Iniciar sesión nuevamente</a> <!-- Añadí una clase para estilizar -->
 {% endblock contenido_que_cambia %}
