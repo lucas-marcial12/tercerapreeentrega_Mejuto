@@ -2,17 +2,23 @@
 
 {% block contenido_que_cambia %}
 <style>
+/* Importar la fuente  */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
+/* Aplicar la fuente  al body */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
+/* Estilizar el título "Nuestros productos" */
 h1 {
-    font-family: 'Roboto', sans-serif; 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; /* Negrita */
+    font-size: 36px;   /* Aumentar el tamaño de la letra */
+    text-align: center;
+    margin-top: 50px;  /* Margen superior para separarlo de la imagen */
+    color: #333333;    /* Color gris oscuro  */
 }
-
-
-
 </style>
 
 {% if messages %}
@@ -23,7 +29,7 @@ h1 {
     </ul>
 {% endif %}
 
-
-<h1>Productos: </h1>
+<!-- Título "Nuestros productos" -->
+<h1>Nuestros productos</h1>
 
 {% endblock contenido_que_cambia %}

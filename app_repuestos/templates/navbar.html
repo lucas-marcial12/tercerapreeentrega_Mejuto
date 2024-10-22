@@ -11,83 +11,113 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Import Montserrat font -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+        <style>
+
+
+        footer {
+            font-family: 'Montserrat', sans-serif;
+        }
+    
+
+            /* Aplicar la fuente Montserrat a todo el cuerpo y la barra de navegación */
+            body, .navbar, .navbar-nav .nav-link, .navbar-brand, .btn {
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            /* Aumentar el espaciado entre los elementos del menú de navegación */
+            .navbar-nav .nav-link {
+                padding-left: 15px;
+                padding-right: 15px;
+                font-weight: 500;
+            }
+
+            /* Estilizar el botón de navegación */
+            .btn-outline-dark {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 600;
+            }
+
+            /* Estilizar el título del header */
+            header h1 {
+                font-size: 36px;
+                font-weight: 700;
+            }
+        </style>
     </head>
     <body>
         <!-- Navigation-->
-         <!-- Navigation-->
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'clientes_formulario'  %}">Registrarse</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'proveedores'  %}">Proveedores</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'sucursales'  %}">Sucursales</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'quienes_somos'  %}">Acerca de mi</a></li>
-            {% if user.is_authenticated %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'clientes_formulario'  %}">Registrarse</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'proveedores'  %}">Proveedores</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'sucursales'  %}">Sucursales</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'quienes_somos'  %}">Acerca de mi</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'buscar_clientes'  %}">Buscar clientes</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'leerclientes'  %}">Administrar</a></li>
+                        {% endif %}
+                        <li class="d-flex ms-lg-4">
+                            <a href="https://wa.me/1125455898" class="btn btn-outline-dark d-flex align-items-center" target="_blank">
+                                <i class="bi bi-whatsapp me-1"></i>
+                                Whatsapp
+                                <span class="badge bg-dark text-white ms-1 rounded-pill">1125455898</span>
+                            </a>
+                        </li>
+                    </ul>
 
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'buscar_clientes'  %}">Buscar clientes</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'leerclientes'  %}">Administrar</a></li>
-
-                {% endif %}
-
-                <li class="d-flex ms-lg-4"> 
-                    <a href="https://wa.me/1125455898" class="btn btn-outline-dark d-flex align-items-center" target="_blank">
-                        <i class="bi bi-whatsapp me-1"></i>
-                        Whatsapp
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">1125455898</span>
-                    </a>
-                </li>
-            </ul>
-
-            {% if user.is_authenticated %}
-            <form method="POST" action="{% url 'logout' %}" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-outline-dark" style="font-weight: bold;">
-                    Cerrar sesión
-                </button>
-            </form>
-        {% else %}
-            <div class="nav-item">
-                <a class="btn btn-outline-dark" href="{% url 'login' %}" role="button" style="font-weight: bold;">
-                    <i class="bi-person-circle"></i> Iniciar sesión
-                </a>
+                    {% if user.is_authenticated %}
+                    <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-dark" style="font-weight: bold;">
+                            Cerrar sesión
+                        </button>
+                    </form>
+                    {% else %}
+                    <div class="nav-item">
+                        <a class="btn btn-outline-dark" href="{% url 'login' %}" role="button" style="font-weight: bold;">
+                            <i class="bi-person-circle"></i> Iniciar sesión
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
-        {% endif %}
-        
+        </nav>
+
+        <!-- Header -->
+        <header class="bg-dark py-5" style="background-image: url('{% static "imagenes/amato_repuestos.jpg" %}'); background-size: contain; background-repeat: repeat; background-position: center; height: 250px;">
            
-        </div>
-    </div>
-</nav>
-        <!-- Header-->
-        <header class="bg-dark py-5" style="background-image: url('{% static "imagenes/amato_repuestos.jpg" %}'); background-size: contain; background-repeat: no-repeat; background-position: center; height: 300px;">
-            <div class="container px-4 px-lg-5 my-5 text-center text-white">
-                
-            </div>
         </header>
-        
-
 
         {% block contenido_que_cambia %}
-            
         {% endblock contenido_que_cambia %}
-            
-        
 
-
-
-       
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2024</p></div>
+        <!-- Footer -->
+        <footer class="py-5 bg-dark text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Contacto</h5>
+                        <p><strong>Teléfono:</strong> (011) 1234-5678</p>
+                        <p><strong>Email:</strong> contacto@amatorepuestos.com</p>
+                        <p><strong>Dirección:</strong> Camino General Belgrano 1234, Quilmes, Buenos Aires</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <p class="m-0">Copyright &copy; Amato Repuestos 2024</p>
+                    </div>
+                </div>
+            </div>
         </footer>
-        <!-- Bootstrap core JS-->
+
+        <!-- Bootstrap core JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
     </body>
 </html>

@@ -38,6 +38,9 @@ urlpatterns = [
     path('leerclientes/', leerclientes, name='leerclientes'),
     path('eliminar_clientes/<cliente_nombre>/', eliminar_clientes, name="eliminar_clientes"),
     path('editar_clientes/<int:cliente_id>/', editar_clientes, name="editar_clientes"),
+    path('editar_perfil', editarPerfil, name="editar_perfil"), 
+    path('cambiar_contrasenia', Cambiar_contrasenia.as_view(), name="cambiar_contrasenia"), 
+
 
 
 ]

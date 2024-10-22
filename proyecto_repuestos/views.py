@@ -4,12 +4,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import clientes
-from .forms import cliente_formulario
+from .forms import cliente_formulario, UserEditForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView, PasswordChangeView
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 # Create your views here.
 
 # Create your views here.
@@ -174,3 +176,36 @@ def custom_logout(request):
     logout(request)
     messages.success(request, "Has cerrado sesión exitosamente.")
     return redirect('inicio')
+
+@login_required
+def editarPerfil(request):
+
+      #Instancia del login
+      usuario = request.user
+     
+      #Si es metodo POST hago lo mismo que el agregar
+      if request.method == 'POST':
+            miFormulario = UserEditForm(request.POST) 
+            if miFormulario.is_valid:   #Si pasó la validación de Django
+
+                  informacion = miFormulario.cleaned_data
+            
+                  #Datos que se modificarán
+                  usuario.email = informacion['email']
+                  usuario.password1 = informacion['password1']
+                  usuario.password2 = informacion['password1']
+                  usuario.save()
+
+                  return render(request, "inicio.html") #Vuelvo al inicio o a donde quieran
+      #En caso que no sea post
+      else: 
+            #Creo el formulario con los datos que voy a modificar
+            miFormulario= UserEditForm(initial={ 'email':usuario.email}) 
+
+      #Voy al html que me permite editar
+      return render(request, "editar_perfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+
+
+class Cambiar_contrasenia(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'cambiar_contrasenia.html'
+    success_url = reverse_lazy('editar_perfil.html')

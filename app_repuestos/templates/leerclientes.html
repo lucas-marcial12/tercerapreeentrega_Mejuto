@@ -5,13 +5,31 @@
 {% block contenido_que_cambia %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es"> <!-- Cambié el idioma a español -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Clientes</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+
+    <style>
+        /* Importar la fuente Montserrat */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        /* Aplicar la fuente Montserrat a todo el cuerpo */
+        body {
+            font-family: 'Montserrat', sans-serif; /* Cambiar la fuente */
+            color: #000000; /* Texto blanco */
+            background-color: #ffffff; /* Fondo gris oscuro */
+        }
+        
+        /* Estilo para el título */
+        .title {
+            text-align: center; /* Centrar el título */
+            margin: 20px 0; /* Separar el título del resto */
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -39,7 +57,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        <a href="{% url 'clientes_formulario' %}" class="btn btn-primary">Agregar nuevo cliente</a>
+        <a href="{% url 'clientes_formulario' %}" class="btn btn-dark">Agregar nuevo cliente</a>
     </div>
 </body>
 </html>
