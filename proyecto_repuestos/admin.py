@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(clientes)
 admin.site.register(proveedores)
 admin.site.register(sucursales)
+admin.site.register(Avatar)

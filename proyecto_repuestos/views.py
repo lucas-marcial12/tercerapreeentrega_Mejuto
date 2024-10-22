@@ -3,8 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import clientes
-from .forms import cliente_formulario, UserEditForm
+from .models import clientes, Avatar
+from .forms import cliente_formulario, UserEditForm, AvatarFormulario
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.views import LogoutView, PasswordChangeView
@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 # Create your views here.
 
 # Create your views here.
@@ -209,3 +210,26 @@ def editarPerfil(request):
 class Cambiar_contrasenia(LoginRequiredMixin, PasswordChangeView):
     template_name = 'cambiar_contrasenia.html'
     success_url = reverse_lazy('editar_perfil.html')
+
+
+@login_required
+def agregarAvatar(request):
+    if request.method == 'POST':
+        miFormulario = AvatarFormulario(request.POST, request.FILES)  # Se incluyen los archivos
+
+        if miFormulario.is_valid():  # Asegúrate de tener los paréntesis
+            u = User.objects.get(username=request.user)
+            avatar = Avatar(user=u, imagen=miFormulario.cleaned_data['imagen'])
+            avatar.save()
+
+            return redirect('inicio')  # Usa redirect en lugar de render
+
+    else:
+        miFormulario = AvatarFormulario()  # Formulario vacío para construir el HTML
+
+    return render(request, "agregar_avatar.html", {"miFormulario": miFormulario})
+
+
+def urlImagen():
+
+      return "/imagenes/logo.png"

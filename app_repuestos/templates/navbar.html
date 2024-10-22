@@ -74,12 +74,21 @@
                     </ul>
 
                     {% if user.is_authenticated %}
-                    <form method="POST" action="{% url 'logout' %}" style="display: inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-dark" style="font-weight: bold;">
-                            Cerrar sesión
+                    <div class="dropdown">
+                        <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                           <strong> {{ request.user.username }} </strong>
                         </button>
-                    </form>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                            <li>
+                                <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="dropdown-item">
+                                        Cerrar sesión
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                     {% else %}
                     <div class="nav-item">
                         <a class="btn btn-outline-dark" href="{% url 'login' %}" role="button" style="font-weight: bold;">
