@@ -3,63 +3,32 @@
 {% load static %} 
 
 {% block contenido_que_cambia %}
-
-<!DOCTYPE html>
-<html lang="es"> 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Clientes</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
-
-    <style>
-        /* Importar la fuente Montserrat */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
-        /* Aplicar la fuente Montserrat a todo el cuerpo */
-        body {
-            font-family: 'Montserrat', sans-serif; /* Cambiar la fuente */
-            color: #000000; /* Texto blanco */
-            background-color: #ffffff; /* Fondo gris oscuro */
-        }
-        
-        /* Estilo para el título */
-        .title {
-            text-align: center; /* Centrar el título */
-            margin: 20px 0; /* Separar el título del resto */
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 class="title">Lista de Clientes</h1>
-        <table class="table">
-            <thead>
+<div class="container">
+    <h1 class="title">Lista de Clientes</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in clientes %}
                 <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Acciones</th>
+                    <td>{{ p.nombre }}</td>
+                    <td>{{ p.apellido }}</td>
+                    <td>{{ p.email }}</td>
+                    <td>
+                        <a href="{% url 'eliminar_clientes' p.nombre %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?');">Eliminar</a>
+                        <a href="{% url 'editar_clientes' p.id %}" class="btn btn-warning">Editar</a> 
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for p in clientes %}
-                    <tr>
-                        <td>{{ p.nombre }}</td>
-                        <td>{{ p.apellido }}</td>
-                        <td>{{ p.email }}</td>
-                        <td>
-                            <a href="{% url 'eliminar_clientes' p.id %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?');">Eliminar</a>
-                            <a href="{% url 'editar_clientes' p.id %}" class="btn btn-warning">Editar</a> 
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <a href="{% url 'clientes_formulario' %}" class="btn btn-dark">Agregar nuevo cliente</a>
-    </div>
-</body>
-</html>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'clientes_formulario' %}" class="btn btn-dark">Agregar nuevo cliente</a>
+</div>
 
 {% endblock contenido_que_cambia %}

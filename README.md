@@ -1,3 +1,5 @@
+Lucas Marcial Mejuto
+
 Amato Repuestos
 Este proyecto es una aplicación web desarrollada con Django para la gestión y venta de repuestos automotrices, creada para Amato Repuestos. El sistema permite la gestión de clientes, la visualización y búsqueda de repuestos, así como la administración de usuarios con un sistema de autenticación y perfiles.
 
