@@ -17,3 +17,7 @@ Funcionalidades principales:
 
 -Registro de clientes desde un formulario específico.
 -Búsqueda de clientes directamente desde la página principal sin redireccionar.
+
+Adjunto la url con la presentacion de la pagina:
+
+https://youtu.be/1DBzFcpIFuc
